@@ -1,4 +1,6 @@
 package com.magneto.mdetection;
 
-public class MutantDetectionHandler {
+import org.springframework.cloud.function.adapter.aws.SpringBootRequestHandler;
+
+public class MutantDetectionHandler extends SpringBootRequestHandler<Object, Object> {
 }
