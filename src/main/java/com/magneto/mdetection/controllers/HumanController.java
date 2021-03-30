@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/mutant")
 public class HumanController {
     @Autowired
-    HumanService humanService;
+    private HumanService humanService;
     @PostMapping
     public ResponseEntity<Boolean> isMutant(@RequestBody Human human){
         return new ResponseEntity<Boolean>(humanService.isMutant(human), HttpStatus.OK);

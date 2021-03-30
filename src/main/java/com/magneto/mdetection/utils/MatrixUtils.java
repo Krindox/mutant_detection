@@ -30,18 +30,26 @@ public class MatrixUtils {
      * */
     public char[][] generateDummyMatrix(int dimension){
         char[][] zerosMatrix = new char[dimension][dimension];
-        boolean  switcher = true;
+        boolean  switcherRow = true;
         for (int i = 0; i < dimension; i++) {
+            boolean  switcherCol = true;
             for (int j = 0; j < dimension; j++) {
-                if(switcher){
-                    zerosMatrix[i][j] = 'z';
-                    switcher = !switcher;
+                if(switcherRow){
+                    if(switcherCol){
+                        zerosMatrix[i][j] = 'z';
+                    }else {
+                        zerosMatrix[i][j] = 'x';
+                    }
                 }else {
-                    zerosMatrix[i][j] = 'x';
-                    switcher = !switcher;
+                    if(switcherCol){
+                        zerosMatrix[i][j] = 'x';
+                    }else {
+                        zerosMatrix[i][j] = 'z';
+                    }
                 }
+                switcherCol = !switcherCol;
             }
-            switcher = !switcher;
+            switcherRow = !switcherRow;
         }
         return zerosMatrix;
     }
@@ -65,13 +73,13 @@ public class MatrixUtils {
      * This method transforms diagonals from left to right and from up to down in vertical columns,
      * to identify when a dna has diagonal mutant sequences
      * */
-    public char[][] identifyNegativeDiagonalMatrix(char[][] matrix, int i){
+    public char[][] identifyNegativeDiagonalMatrix(char[][] matrix, int iterateFrom){
 
         char[][] newMatrix = generateDummyMatrix(matrix.length);
         boolean  firstCall = true;
         int      countRow = 0;
 
-        for (int j = i; j < matrix.length; j++) {
+        for (int j = iterateFrom; j < matrix.length; j++) {
             if(!firstCall) countRow += 1;
             for (int k = 0; k < matrix[0].length; k++) {
                 if(firstCall){
@@ -90,13 +98,13 @@ public class MatrixUtils {
      * This method transforms diagonals from left to right and from down to up in vertical columns,
      * to identify when a dna has diagonal mutant sequences
      * */
-    public char[][] identifyPositiveDiagonalMatrix(char[][] matrix, int i){
+    public char[][] identifyPositiveDiagonalMatrix(char[][] matrix, int iterateFrom){
 
         char[][] newMatrix = generateDummyMatrix(matrix.length);
         boolean  firstCall = true;
         int      countRow = 0;
 
-        for (int j = i; j >= 0; j--) {
+        for (int j = iterateFrom; j >= 0; j--) {
             if(!firstCall) countRow += 1;
             for (int k = matrix.length - 1; k >= 0; k--) {
                 if(firstCall){

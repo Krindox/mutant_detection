@@ -26,7 +26,6 @@ public class HumanService {
         char[][] auxMatrix;
         int      countMutantSequence = 0;
         boolean  firstIteration = true;
-        int      iterateDiagonalUntil = 0;
 
         log.info("list size is {}", human.getDna().size());
 
@@ -60,18 +59,16 @@ public class HumanService {
                 auxMatrix = matrixUtils.toTranspose(auxMatrix);
                 countMutantSequence += matrixUtils.detectMutantSequence(auxMatrix, matrix.length);
             }else{
-                iterateDiagonalUntil += 1;
                 auxMatrix = matrixUtils.identifyNegativeDiagonalMatrix(matrix, i);
                 auxMatrix = matrixUtils.toTranspose(auxMatrix);
-                countMutantSequence += matrixUtils.detectMutantSequence(auxMatrix, iterateDiagonalUntil);
+                countMutantSequence += matrixUtils.detectMutantSequence(auxMatrix, 1);
             }
 
         }
 
         //detect mutant sequences in a positive-diagonal way
         firstIteration       = true;
-        iterateDiagonalUntil = 0;
-        for (int i = auxMatrix.length - 1; i >= validations.NUMBER_SAME_BASE_TO_BE_MUTANT - 1 ; i--) {
+        for (int i = matrix.length - 1; i >= validations.NUMBER_SAME_BASE_TO_BE_MUTANT - 1 ; i--) {
             if(firstIteration) {
                 firstIteration = false;
                 auxMatrix = matrixUtils.identifyPositiveDiagonalMatrix(matrix, i);
@@ -79,10 +76,9 @@ public class HumanService {
                 countMutantSequence += matrixUtils.detectMutantSequence(auxMatrix, matrix.length);
 
             }else{
-                iterateDiagonalUntil += 1;
                 auxMatrix = matrixUtils.identifyPositiveDiagonalMatrix(matrix, i);
                 auxMatrix = matrixUtils.toTranspose(auxMatrix);
-                countMutantSequence += matrixUtils.detectMutantSequence(auxMatrix, iterateDiagonalUntil);
+                countMutantSequence += matrixUtils.detectMutantSequence(auxMatrix, 1);
             }
 
         }
