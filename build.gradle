@@ -1,3 +1,15 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+	}
+}
+
+
 plugins {
 	id 'org.springframework.boot' version '2.4.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -21,6 +33,11 @@ dependencies {
 	implementation group: 'com.amazonaws', name: 'aws-lambda-java-events', version: '3.6.0'
 	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-function-adapter-aws
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-function-adapter-aws', version: '3.0.13.RELEASE'
+	// https://mvnrepository.com/artifact/org.apache.openwebbeans/openwebbeans-gradle
+	implementation group: 'org.apache.openwebbeans', name: 'openwebbeans-gradle', version: '2.0.22'
+	// https://mvnrepository.com/artifact/com.amazonaws.serverless/aws-serverless-java-container-springboot2
+	implementation group: 'com.amazonaws.serverless', name: 'aws-serverless-java-container-springboot2', version: '1.5.2'
+
 
 
 
@@ -31,3 +48,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+
+
+
