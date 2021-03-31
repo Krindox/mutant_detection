@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import reactor.core.publisher.Flux;
 
 @Service
 public class HumanService {
@@ -20,7 +21,8 @@ public class HumanService {
 
     /**
      * Given a human who has a dna list, this method identify if the human is a mutant
-     * */
+     *
+     * @param human*/
     public boolean isMutant(Human human){
         char[][] matrix;
         char[][] auxMatrix;

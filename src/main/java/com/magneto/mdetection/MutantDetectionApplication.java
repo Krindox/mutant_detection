@@ -8,12 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.function.Function;
 
 @SpringBootApplication
-public class MutantDetectionApplication extends SpringBootServletInitializer {
+public class MutantDetectionApplication {
 
 	@Autowired
 	HumanController humanController;

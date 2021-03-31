@@ -5,6 +5,9 @@ import java.util.List;
 public class Human {
     private List<String> dna;
 
+    public Human() {
+    }
+
     public List<String> getDna() {
         return dna;
     }
